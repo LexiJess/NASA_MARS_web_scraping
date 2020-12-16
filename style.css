@@ -1,0 +1,87 @@
+html {
+    font-size: 10px; /* px means "pixels": the base font size is now 10 pixels high  */
+    font-family: "Open Sans", sans-serif; /* this should be the rest of the output you got from Google fonts */
+  }
+  h1 {
+    font-size: 60px;
+    text-align: center;
+  }
+  
+  p, li {
+    font-size: 16px;    
+    line-height: 2;
+    letter-spacing: 1px;
+  }
+  html {
+    background-color: #007f9f;
+  }
+  body {
+    
+    margin: 0 auto;
+    width: 70%;
+    height: 100%;
+    padding: 0 20px 20px 20px;
+    border: 5px solid black;
+    float: left;
+  }
+
+
+  h1 {
+    font-size: 100px;
+    text-align: center;
+    margin: 0;
+    padding: 20px 0;    
+    color: #00539F;
+   
+  }
+  img {
+    float:right;
+    display: block;
+    margin: 0 auto;
+    
+  }
+  h4 {
+    font-size: 90px;
+    text-align: center;
+    margin: 0;
+    padding: 20px 0;    
+    color: #00539F;
+    text-shadow: 3px 3px 1px black;}
+
+#pdcontainer {
+     font-family: Arial, Helvetica, sans-serif;
+    color: #000000;
+     }
+        
+#sidebar { 
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0; 
+    width: 20%; 
+    border:5px solid #66CCFF; 
+        }
+#sidebar img {
+    height: 25%;
+    width: 100%;
+    }
+
+#image-thumbnail {
+    height: 150%;
+    width: 100%;
+    }
+        
+#content{
+    margin:0;
+    padding:0;
+    width:500px;
+    height:2455px;
+    border:5px solid #66CCFF;
+    position: relative;
+    float:left;
+        }
+    
+    .img-fluid. {
+    max-width: 100%;
+    height: auto;    
+    }
