@@ -9,41 +9,46 @@ import pandas as pd
 executable_path = {'executable_path': ChromeDriverManager().install()}
 browser = Browser('chrome', **executable_path, headless=False)
 
+scraping_dictionary=[]
+
 #NASA Mars News.
 #a function that returns the first title and first paragraph text
 #Mission_to_mars
 def Mission_to_mars():
-        url = 'https://mars.nasa.gov/news'
-        browser.visit(url)
+    url = 'https://mars.nasa.gov/news'
+    browser.visit(url)
 
-        # Create a Beautiful Soup object
-        soup = bs(browser.html, 'html.parser')
-        type(soup)
+    # Create a Beautiful Soup object
+    soup = bs(browser.html, 'html.parser')
+    type(soup)
 
-        titles=soup.find_all(name='div', class_="content_title")
+    titles=soup.find_all(name='div', class_="content_title")
 
-        #finding the first-listed title
-        titles[0].text
+    #finding the first-listed title
+    titles[0].text
 
-        #storing the first title as a variable
-        latest_title=titles[0].text.strip("\n")
-        latest_title
+    #storing the first title as a variable
+    latest_title=titles[0].text.strip("\n")
+    latest_title
 
-        #This is the list of titles
-        titles_list=[]
-        for t in titles:
-            titles_list.append(t.text.strip("\n"))
-        titles_list
+    scraping_dictionary["news_title"]=latest_title
 
-        paragraph_text=soup.find_all(name='div', class_="rollover_description_inner")
-        #paragraph_text
+    #This is the list of titles (not needed here, but I wrote this painfully and slowly and so I'm keeping it)
+    titles_list=[]
+    for t in titles:
+        titles_list.append(t.text.strip("\n"))
+    titles_list
 
-        #Storing the first paragraph as a variable
-        paragraph_text[0].text
-        latest_paragraph_text=paragraph_text[0].text
-        latest_paragraph_text
+    paragraph_text=soup.find_all(name='div', class_="rollover_description_inner")
+    #paragraph_text
 
-print (latest_title, latest_paragraph_text)        
+    #Storing the first paragraph as a variable
+    paragraph_text[0].text
+    latest_paragraph_text=paragraph_text[0].text
+    latest_paragraph_text
+
+    scraping_dictionary["paragraph_text"]=latest_paragraph_text
+            
 
 #JPL Mars Space Images Featured Image
 #a function that returns the variable for the url for the featured image
@@ -75,7 +80,9 @@ def featured_image():
 
     #Setting the featured image for the image url
     featured_image_url=pic_url.find(name='a').get('href')
-print (featured_image_url) 
+    
+    scraping_dictionary["featured_image"]=featured_image_url
+    
 
 
 #Mars Facts
@@ -97,7 +104,8 @@ def marsFacts():
     html_table = df.to_html()
     html_table
 
-print (html_table)  
+    scraping_dictionary["facts_table"]=html_table
+     
 
 #Mars Hemispheres
 #a function that returns a dictionary of the titles and image urls of the hi-res Mars Images
@@ -152,8 +160,10 @@ def mars_hemispheres():
         for name, url in zip(title_names, urls):
             savannah={"title": name, "img_url": url}
             hemisphere_image_urls.append(savannah)
-        
-print (hemisphere_image_urls)
+
+    scraping_dictionary["hemisphere_images"]=hemisphere_image_urls
+
+    
 
 
 #Step 2
@@ -163,3 +173,19 @@ def scrape():
     featured_image()
     marsFacts()
     mars_hemispheres()
+
+print(scraping_dictionary)
+
+
+if __name__ == "__main__":
+  scrape()   
+
+#Store the scraped results in a python dictionary that uses the below keys and values   
+#   news_title:*this will have the variable referencing the string as the value*
+#   news_paragraph:*this will have the variable referencing the string as the value*
+#   featured image:*this will have one url as the value*
+#   facts:*this will have the whole html as the value*
+#   hemispheres:*this will have a list of the four images*
+#   last-modified time stamp:
+
+#then write the dictionary into Mongo. After that, reference the Mongo file in the html document
