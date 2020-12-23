@@ -2,14 +2,14 @@
 from bs4 import BeautifulSoup as bs
 import requests
 from splinter import Browser
-from bs4 import BeautifulSoup
 from webdriver_manager.chrome import ChromeDriverManager
 import pandas as pd
+import json
 
 executable_path = {'executable_path': ChromeDriverManager().install()}
 browser = Browser('chrome', **executable_path, headless=False)
 
-scraping_dictionary=[]
+scraping_dictionary={}
 
 #NASA Mars News.
 #a function that returns the first title and first paragraph text
@@ -29,15 +29,14 @@ def Mission_to_mars():
 
     #storing the first title as a variable
     latest_title=titles[0].text.strip("\n")
-    latest_title
 
     scraping_dictionary["news_title"]=latest_title
 
-    #This is the list of titles (not needed here, but I wrote this painfully and slowly and so I'm keeping it)
-    titles_list=[]
-    for t in titles:
-        titles_list.append(t.text.strip("\n"))
-    titles_list
+    # #This is the list of titles (not needed here, but I wrote this painfully and slowly and so I'm keeping it)
+    # titles_list=[]
+    # for t in titles:
+    #     titles_list.append(t.text.strip("\n"))
+    # titles_list
 
     paragraph_text=soup.find_all(name='div', class_="rollover_description_inner")
     #paragraph_text
@@ -47,8 +46,7 @@ def Mission_to_mars():
     latest_paragraph_text=paragraph_text[0].text
     latest_paragraph_text
 
-    scraping_dictionary["paragraph_text"]=latest_paragraph_text
-            
+    scraping_dictionary["paragraph_text"]=latest_paragraph_text      
 
 #JPL Mars Space Images Featured Image
 #a function that returns the variable for the url for the featured image
@@ -76,12 +74,12 @@ def featured_image():
     #print(soup.prettify())
 
     #finding the code that indicates the download-the-pic link
-    pic_url=soup.find(name='div', class_="download_tiff")
+    pic_url=soup.findAll(name='div', class_="download_tiff")[1]
 
     #Setting the featured image for the image url
     featured_image_url=pic_url.find(name='a').get('href')
     
-    scraping_dictionary["featured_image"]=featured_image_url
+    scraping_dictionary["featured_image"]="https:"+featured_image_url
     
 
 
@@ -173,19 +171,24 @@ def scrape():
     featured_image()
     marsFacts()
     mars_hemispheres()
-
-print(scraping_dictionary)
-
+    return scraping_dictionary
+#scraping_json = json.dumps(scraping_dictionary)
 
 if __name__ == "__main__":
-  scrape()   
+    scrape()   
 
-#Store the scraped results in a python dictionary that uses the below keys and values   
-#   news_title:*this will have the variable referencing the string as the value*
-#   news_paragraph:*this will have the variable referencing the string as the value*
-#   featured image:*this will have one url as the value*
-#   facts:*this will have the whole html as the value*
-#   hemispheres:*this will have a list of the four images*
-#   last-modified time stamp:
+    out_file = open("scraping.json", "w")  
+    
+    json.dump(scraping_dictionary, out_file, indent = 6)  
+    
+    out_file.close()   
 
-#then write the dictionary into Mongo. After that, reference the Mongo file in the html document
+
+#How/why do I need to get this into Mongo?
+#How do I get the button to run the code and not just link to a new page?
+
+#How do I connect the button on the app.py index page 
+# that runs the index.html to get it to connect to the app.py scrape
+#page?
+
+# #then write the dictionary into Mongo. After that, reference the Mongo file in the html document
