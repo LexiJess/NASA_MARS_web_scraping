@@ -22,8 +22,8 @@ db = client.web_scraping_challenge
 def index():
   
   #These two lines (24,25) entered to see if it will update Mongo
-  # scrapeobj=scrape_mars.scrape()
-  # db.mars.update({},scrapeobj,upsert=True)
+  scrapeobj=scrape_mars.scrape()
+  db.mars.update({},scrapeobj,upsert=True)
  
   finding_mars=db.mars.find_one()
   print (finding_mars)
@@ -38,12 +38,12 @@ def index():
 #   finding_mars_3=db.mars.find_three() 
 #   return render_template('index.html', finding_mars_3=finding_mars_3)
 
-# @app.route('/scrape')
-# def scrape():
-#   scrapeobj=scrape_mars.scrape()
-#   db.mars.update({},scrapeobj,upsert=True)
-#   finding_mars=db.mars.find_one()
-#   return render_template('scrape.html', finding_mars=finding_mars)
+@app.route('/scrape')
+def scrape():
+  scrapeobj=scrape_mars.scrape()
+  db.mars.update({},scrapeobj,upsert=True)
+  finding_mars=db.mars.find_one()
+  return render_template('scrape.html', finding_mars=finding_mars)
 
 
 if __name__ == '__main__':
