@@ -1,5 +1,4 @@
-# web-scraping-challenge
-Exploring web scraping and Mongo
+The pertinent files are in folders titled "Flask_HTML code", "Flask_HTML Images", and "Jupyter Scraping Files". 
 
 
 Whew! Webscraping is not for the faint of heart. It will make a hard man humble. 
