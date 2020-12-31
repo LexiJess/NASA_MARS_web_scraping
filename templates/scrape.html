@@ -56,14 +56,16 @@ it's reducing with each iteration? -->
 <h3> Here's some enhanced images of Mars' hemispheres </h3>
           <div class="card-deck">
           {% for item in finding_mars.hemisphere_images %}    
-          <div class="card">
+          <div class="card" style="min-width: 30rem;">
           <img class= "card-img-top" style="min-width: 30rem;" src="{{ item.img_url }}" alt="Card image cap" >
           <div class="card-body">
           <h5 class="card-title">{{ item.title }}</h5>
                 
           <p class="card-text"><small class="text-muted">updated just now</small></p>
-          </div>
-            {% endfor %}
+        </div>
+        <div class="card-footer"></div>
+        </div>
+        {% endfor %}
 
       
 </div>
