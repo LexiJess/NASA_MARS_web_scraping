@@ -14,30 +14,33 @@
 <body>
   <meta charset=utf-8>
 
-      <div class="row">
-        <div class="col-md-7">  
-          <h1>Mission to Mars </h1>
-          <h2>Let's find out lots of cool facts about Mars!</h2>
-          <h3>(Push Button to Deploy)</h3>
-          <p><a class="btn btn-primary" href="http://127.0.0.1:5000/scrape" role="button">Scrape New Data</a></p>
-         
-        </div>
 
-     </div>
+     <div class="card text-center">
+      <div class="card-header">
+        Mission to Mars
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Let's find out lots of cool facts about Mars!</h5>
+        <p class="card-text">(Push Button to Deploy)</p>
+        <a class="btn btn-primary" href="http://127.0.0.1:5000/scrape" role="button">Scrape New Data</a>
+      </div>
+      <div class="card-footer text-muted">
+        (It's really cool)
+      </div>
+    </div>
 
-
-      <h2>{{ finding_mars.news_title }} : </h2> 
+      <!-- <h2>{{ finding_mars.news_title }} : </h2> 
       <h3>{{ finding_mars.paragraph_text }}</h3>  
-      <!-- <h3>{{ finding_mars.hemispheres_images }}</h3>   -->
+       <h3>{{ finding_mars.hemispheres_images }}</h3>   -->
       
       
-      {% for item in finding_mars.hemisphere_images %}
+      <!-- {% for item in finding_mars.hemisphere_images %}
       <div>
       <h3>{{ item.title }}</h3>  
       <h3><img src="{{ item.img_url }}" alt="pic" /></h3> 
         </div>
-        {% endfor %} 
-
+        {% endfor %} --> 
+ 
 
      
         <!-- How do I get Mongo to update with the refreshed data from the new scrape of the featured image?
@@ -45,12 +48,12 @@
         makes it get wonky.  -->
 
 
-      <h2><img src="{{ finding_mars.featured_image }}" alt="pic" /></h2>
+      <!-- <h2><img src="{{ finding_mars.featured_image }}" alt="pic" /></h2>
       
-      <!-- <button> <a href="scrape">Click me</a></button> -->
- 
+      <button> <a href="scrape">Click me</a></button> -->
+<!--  
   {{ finding_mars.facts_table | safe }}
-    <div class="container">
+    <div class="container"> --> 
 
       
 </div>

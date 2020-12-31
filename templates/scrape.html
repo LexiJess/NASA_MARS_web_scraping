@@ -16,21 +16,25 @@
 
       <div class="row">
         <div class="col-md-7">  
-          <h1>Mission to Mars </h1>
-          <h2>Let's find out lots of cool facts about Mars!</h2>
-          <h3>(Push Button to Deploy)</h3>
-          <p><a class="btn btn-primary" href="scrape.html" role="button">Scrape New Data</a></p>
-         
         </div>
 
      </div>
 
 
-      <h2>{{ finding_mars.news_title }} : </h2> 
-      <h3>{{ finding_mars.paragraph_text }}</h3>  
-      
-      
-      
+      <!-- <h2>{{ finding_mars.news_title }} : </h2>  -->
+
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Latest Mars News</h5>
+          {{ finding_mars.news_title }} :  {{ finding_mars.paragraph_text }}
+        </div>
+      </div>
+
+    
+      <!-- <h3>{{ finding_mars.paragraph_text }}</h3>   -->
+
+
+
       {% for item in finding_mars.hemisphere_images %}
       <div>
       <h3>{{ item.title }}</h3>  
@@ -38,15 +42,15 @@
         </div>
         {% endfor %} 
 
-
-     
-       
-
-
-      <h2><img src="{{ finding_mars.featured_image }}" alt="pic" /></h2>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Mars Featured Image</h5>
+          <p class="card-text"><small class="text-muted">updated just now</small></p>
+        </div>
+        <img class="card-img-bottom" src="{{ finding_mars.featured_image }}" alt="Card image cap">
+      </div>
       
-      
- 
+      <h3>Facts About Mars</h3> 
   {{ finding_mars.facts_table | safe }}
     <div class="container">
 
