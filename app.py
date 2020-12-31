@@ -31,12 +31,7 @@ def index():
   #this section of code populates the "Mars Now" right after "My Website" (line 17 of index.html)
   #the rest of the mongo collection/json will have to be added in similarly. 
   #<h1>My Website {{ finding_mars.news_title }}</h1> This is the line that needs to be emulated (17 in index.html)
-# def index():
-#   finding_mars_2=db.mars.find_two() 
-#   return render_template('index.html', finding_mars_2=finding_mars_2)
-# def index():
-#   finding_mars_3=db.mars.find_three() 
-#   return render_template('index.html', finding_mars_3=finding_mars_3)
+
 
 @app.route('/scrape')
 def scrape():

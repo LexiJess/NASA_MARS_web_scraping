@@ -170,7 +170,7 @@ def scrape():
     Mission_to_mars()
     featured_image()
     marsFacts()
-    # mars_hemispheres()
+    mars_hemispheres()
     return scraping_dictionary
 #scraping_json = json.dumps(scraping_dictionary)
 
