@@ -21,16 +21,13 @@ db = client.web_scraping_challenge
 @app.route('/')
 def index():
   
-  #These two lines (24,25) entered to see if it will update Mongo
   scrapeobj=scrape_mars.scrape()
   db.mars.update({},scrapeobj,upsert=True)
  
   finding_mars=db.mars.find_one()
   print (finding_mars)
   return render_template('index.html', finding_mars=finding_mars)
-  #this section of code populates the "Mars Now" right after "My Website" (line 17 of index.html)
-  #the rest of the mongo collection/json will have to be added in similarly. 
-  #<h1>My Website {{ finding_mars.news_title }}</h1> This is the line that needs to be emulated (17 in index.html)
+ 
 
 
 @app.route('/scrape')
