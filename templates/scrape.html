@@ -25,31 +25,49 @@
 
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Latest Mars News</h5>
-          {{ finding_mars.news_title }} :  {{ finding_mars.paragraph_text }}
+          <h1 class="card-title">Latest Mars News</h1>
+          <h3> {{ finding_mars.news_title }} : {{ finding_mars.paragraph_text }} </h3>
         </div>
       </div>
 
-    
-      <!-- <h3>{{ finding_mars.paragraph_text }}</h3>   -->
 
-
-
-      {% for item in finding_mars.hemisphere_images %}
+<!-- This block of code works, but makes all the images real big. -->
+      <!-- {% for item in finding_mars.hemisphere_images %}
       <div>
       <h3>{{ item.title }}</h3>  
       <h3><img src="{{ item.img_url }}" alt="pic" /></h3> 
         </div>
-        {% endfor %} 
+        {% endfor %}  -->
 
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Mars Featured Image</h5>
+
+        
+<!-- Why does the below block of code make each image render smaller and smaller? Something about
+it's reducing with each iteration? WTF? -->
+
+          <div class="card-deck" style="width: 18rem;">
+          {% for item in finding_mars.hemisphere_images %}    
+          <div class="card" >
+          <img class="card-img-top" src="{{ item.img_url }}" alt="Card image cap">
+          <div class="card-body">
+          <h5 class="card-title">{{ item.title }}</h5>
+                
           <p class="card-text"><small class="text-muted">updated just now</small></p>
-        </div>
-        <img class="card-img-bottom" src="{{ finding_mars.featured_image }}" alt="Card image cap">
-      </div>
+          </div>
+            {% endfor %}
+
+
+
+
       
+      <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="{{ finding_mars.featured_image }}" alt="Card image cap">
+        <div class="card-body">
+          <p class="card-text">Mars Featured Image</p>
+        </div>
+      </div>
+
+
+
       <h3>Facts About Mars</h3> 
   {{ finding_mars.facts_table | safe }}
     <div class="container">
