@@ -1,4 +1,6 @@
-The pertinent files are in folders titled "Flask_HTML code", "Flask_HTML Images", and "Jupyter Scraping Files". 
+--The html files are in the "templates" file. 
+--The Jupyter files are Mars_dictionary.ipynb, mission_to_mars.ipynb, and Mars_facts.ipynb (in the Mission_to_Mars folder)
+--The Flask and MongoDb routes are app.py and scrape_mars.py, and their adjacent scraping.json
 
 
 Whew! Webscraping is not for the faint of heart. It will make a hard man humble. 
